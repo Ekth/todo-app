@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App - Gestionnaire de tâches</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <i class="fas fa-check-circle"></i>
+                Todo App
+            </h1>
+            <p class="subtitle">Organisez vos tâches efficacement</p>
+        </header>
+
+        <main class="main">
+            <!-- Formulaire d'ajout de tâche -->
+            <section class="add-task-section">
+                <form id="addTaskForm" class="add-task-form">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="taskInput" 
+                            class="task-input" 
+                            placeholder="Ajouter une nouvelle tâche..."
+                            maxlength="100"
+                            required
+                        >
+                        <button type="submit" class="add-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Filtres -->
+            <section class="filters-section">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-list"></i>
+                        Toutes
+                    </button>
+                    <button class="filter-btn" data-filter="active">
+                        <i class="fas fa-clock"></i>
+                        Actives
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <i class="fas fa-check"></i>
+                        Terminées
+                    </button>
+                </div>
+                <div class="task-stats">
+                    <span id="taskCount" class="task-count">0 tâche(s)</span>
+                </div>
+            </section>
+
+            <!-- Liste des tâches -->
+            <section class="tasks-section">
+                <div id="tasksList" class="tasks-list">
+                    <!-- Les tâches seront ajoutées ici dynamiquement -->
+                </div>
+                
+                <!-- Message quand aucune tâche -->
+                <div id="emptyState" class="empty-state">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Aucune tâche pour le moment</h3>
+                    <p>Commencez par ajouter votre première tâche !</p>
+                </div>
+            </section>
+
+            <!-- Actions en masse -->
+            <section class="bulk-actions" id="bulkActions" style="display: none;">
+                <div class="bulk-actions-content">
+                    <span class="bulk-text">Actions en masse :</span>
+                    <button class="bulk-btn" id="markAllCompleted">
+                        <i class="fas fa-check-double"></i>
+                        Tout marquer
+                    </button>
+                    <button class="bulk-btn danger" id="deleteCompleted">
+                        <i class="fas fa-trash"></i>
+                        Supprimer terminées
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Todo App - Créé avec ❤️</p>
+        </footer>
+    </div>
+
+    <!-- Template pour une tâche -->
+    <template id="taskTemplate">
+        <div class="task-item" data-id="">
+            <div class="task-content">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="task-checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <span class="task-text"></span>
+                <div class="task-actions">
+                    <button class="task-btn edit-btn" title="Modifier">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="task-btn delete-btn" title="Supprimer">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="task-edit-form" style="display: none;">
+                <input type="text" class="edit-input">
+                <div class="edit-actions">
+                    <button class="save-btn">
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <button class="cancel-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html> 
